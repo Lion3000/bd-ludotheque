@@ -1,6 +1,6 @@
 format 220
 "Projet BD" // Projet BD
-  revision 1
+  revision 2
   modified_by 70 "Alex Zarzitski"
   // class settings
   
@@ -53,6 +53,342 @@ format 220
     classdiagram 128070 "cd"
       classdiagramsettings member_max_width 0 end
       size A4
+    end
+
+    class 128070 "Jeu"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 129478 "nom"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129734 "genre"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129350 "ageMinimal"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129990 "editeur"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 128198 "Livre"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128070 "titre"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128198 "auteur"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128326 "nombreDePages"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128454 "nombreDeChapitres"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128582 "dateDeParution"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129222 "couverture"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 128326 "Animateur"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 128454 "Abonne"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128966 // <unidirectional association>
+	relation 128710 --->
+	  a role_name "" multiplicity "*" private
+	    classrelation_ref 128966 // <unidirectional association>
+	  b multiplicity "*" parent class_ref 128582 // Evenement
+      end
+
+      classrelation 129094 // <unidirectional association>
+	relation 128838 --->
+	  a role_name "" multiplicity "*" private
+	    classrelation_ref 129094 // <unidirectional association>
+	  b multiplicity "0..1" parent class_ref 128710 // JeuSocieté
+      end
+
+      classrelation 129222 // <unidirectional association>
+	relation 128966 --->
+	  a role_name "" multiplicity "*" private
+	    classrelation_ref 129222 // <unidirectional association>
+	  b multiplicity "0..1" parent class_ref 128838 // JeuVideo
+      end
+
+      classrelation 129350 // <unidirectional association>
+	relation 129094 --->
+	  a role_name "" multiplicity "*" private
+	    classrelation_ref 129350 // <unidirectional association>
+	  b multiplicity "0..1" parent class_ref 128198 // Livre
+      end
+
+      attribute 128710 "nom"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128838 "prenom"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128966 "age"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129094 "sexe"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130246 "adresse"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 128582 "Evenement"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129478 // <directional composition>
+	relation 129222 *-->
+	  a role_name "" multiplicity "*" private
+	    classrelation_ref 129478 // <directional composition>
+	  b multiplicity "*" parent class_ref 128326 // Animateur
+      end
+    end
+
+    class 128710 "JeuSocieté"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128070 // <generalisation>
+	relation 128070 ---|>
+	  a public
+	    classrelation_ref 128070 // <generalisation>
+	  b parent class_ref 128070 // Jeu
+      end
+
+      attribute 129606 "nombreDeJoueurs"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130118 "dureePartie"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 128838 "JeuVideo"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128582 // <generalisation>
+	relation 128454 ---|>
+	  a public
+	    classrelation_ref 128582 // <generalisation>
+	  b parent class_ref 128070 // Jeu
+      end
+
+      attribute 129862 "typeSupport"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130374 "symbolePEGI"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
     end
   end
 end
