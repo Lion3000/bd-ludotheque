@@ -1,7 +1,7 @@
-format 220
+format 222
 "Projet BD" // Projet BD
-  revision 3
-  modified_by 70 "Alex Zarzitski"
+  revision 4
+  modified_by 2 "AlphaSyne"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -65,8 +65,8 @@ format 220
       explicit_switch_type ""
       mysql_decl ""
       
-      attribute 129478 "nom"
-	private explicit_type ""
+      attribute 129478 "titre"
+	private explicit_type "string"
 	cpp_decl ""
 	java_decl ""
 	php_decl ""
@@ -100,6 +100,17 @@ format 220
 
       attribute 129990 "editeur"
 	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128258 "dateParution"
+	private explicit_type "date"
 	cpp_decl ""
 	java_decl ""
 	php_decl ""
@@ -272,6 +283,36 @@ format 220
 	    classrelation_ref 136390 // <unidirectional association>
 	  b multiplicity "0..1" parent class_ref 128070 // Article
       end
+
+      operation 128002 "emprunterArticle"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128130 "utiliserReduction"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128258 "retournerArticle"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	
+	
+	
+      end
     end
 
     class 128710 "JeuSocieté"
@@ -291,8 +332,19 @@ format 220
 	  b parent class_ref 128070 // Article
       end
 
-      attribute 129606 "nombreDeJoueurs"
-	private explicit_type ""
+      attribute 129606 "nombreDeJoueursMin"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128386 "nombreDeJoueursMax"
+	private explicit_type "int"
 	cpp_decl ""
 	java_decl ""
 	php_decl ""
@@ -331,7 +383,7 @@ format 220
 	  b parent class_ref 128070 // Article
       end
 
-      attribute 129862 "typeSupport"
+      attribute 129862 "support"
 	private explicit_type ""
 	cpp_decl ""
 	java_decl ""
@@ -343,7 +395,7 @@ format 220
       end
 
       attribute 130374 "symbolePEGI"
-	private explicit_type ""
+	private explicit_type "BLOB"
 	cpp_decl ""
 	java_decl ""
 	php_decl ""
@@ -369,6 +421,28 @@ format 220
 	  a public
 	    classrelation_ref 136134 // <generalisation>
 	  b parent class_ref 128070 // Article
+      end
+
+      attribute 128002 "realisateur"
+	private explicit_type "string"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128130 "acteursPrincipaux"
+	private explicit_type "VARRAY"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
       end
     end
 

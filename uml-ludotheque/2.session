@@ -1,0 +1,15 @@
+window_sizes 1920 1017 450 1465 867 104
+
+diagrams
+  active  classdiagram_ref 128070 // cd
+    1465 867 100 A4 0 0
+end
+show_stereotypes
+selected operation_ref 128258 // retournerArticle
+open
+  class_ref 128070 // Article
+  class_ref 128454 // Abonne
+  attribute_ref 128386 // nombreDeJoueursMax
+  class_ref 135366 // Film
+end
+end
