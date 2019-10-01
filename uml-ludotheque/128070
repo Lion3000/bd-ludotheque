@@ -1,6 +1,6 @@
 format 220
 "Projet BD" // Projet BD
-  revision 2
+  revision 3
   modified_by 70 "Alex Zarzitski"
   // class settings
   
@@ -55,7 +55,7 @@ format 220
       size A4
     end
 
-    class 128070 "Jeu"
+    class 128070 "Article"
       visibility package 
       cpp_decl ""
       java_decl ""
@@ -187,18 +187,6 @@ format 220
       end
     end
 
-    class 128326 "Animateur"
-      visibility package 
-      cpp_decl ""
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-    end
-
     class 128454 "Abonne"
       visibility package 
       cpp_decl ""
@@ -209,27 +197,6 @@ format 220
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 128966 // <unidirectional association>
-	relation 128710 --->
-	  a role_name "" multiplicity "*" private
-	    classrelation_ref 128966 // <unidirectional association>
-	  b multiplicity "*" parent class_ref 128582 // Evenement
-      end
-
-      classrelation 129094 // <unidirectional association>
-	relation 128838 --->
-	  a role_name "" multiplicity "*" private
-	    classrelation_ref 129094 // <unidirectional association>
-	  b multiplicity "0..1" parent class_ref 128710 // JeuSocieté
-      end
-
-      classrelation 129222 // <unidirectional association>
-	relation 128966 --->
-	  a role_name "" multiplicity "*" private
-	    classrelation_ref 129222 // <unidirectional association>
-	  b multiplicity "0..1" parent class_ref 128838 // JeuVideo
-      end
-
       classrelation 129350 // <unidirectional association>
 	relation 129094 --->
 	  a role_name "" multiplicity "*" private
@@ -291,23 +258,19 @@ format 220
 	mysql_decl ""
 	MysqlColumn
       end
-    end
 
-    class 128582 "Evenement"
-      visibility package 
-      cpp_decl ""
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      classrelation 129478 // <directional composition>
-	relation 129222 *-->
+      classrelation 136262 // <unidirectional association>
+	relation 136006 --->
 	  a role_name "" multiplicity "*" private
-	    classrelation_ref 129478 // <directional composition>
-	  b multiplicity "*" parent class_ref 128326 // Animateur
+	    classrelation_ref 136262 // <unidirectional association>
+	  b multiplicity "*" parent class_ref 135494 // Reduction
+      end
+
+      classrelation 136390 // <unidirectional association>
+	relation 136134 --->
+	  a role_name "" multiplicity "*" private
+	    classrelation_ref 136390 // <unidirectional association>
+	  b multiplicity "0..1" parent class_ref 128070 // Article
       end
     end
 
@@ -325,7 +288,7 @@ format 220
 	relation 128070 ---|>
 	  a public
 	    classrelation_ref 128070 // <generalisation>
-	  b parent class_ref 128070 // Jeu
+	  b parent class_ref 128070 // Article
       end
 
       attribute 129606 "nombreDeJoueurs"
@@ -365,7 +328,7 @@ format 220
 	relation 128454 ---|>
 	  a public
 	    classrelation_ref 128582 // <generalisation>
-	  b parent class_ref 128070 // Jeu
+	  b parent class_ref 128070 // Article
       end
 
       attribute 129862 "typeSupport"
@@ -389,6 +352,36 @@ format 220
 	mysql_decl ""
 	MysqlColumn
       end
+    end
+
+    class 135366 "Film"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 136134 // <generalisation>
+	relation 135878 ---|>
+	  a public
+	    classrelation_ref 136134 // <generalisation>
+	  b parent class_ref 128070 // Article
+      end
+    end
+
+    class 135494 "Reduction"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
     end
   end
 end
