@@ -2,16 +2,11 @@ window_sizes 1920 1001 450 1464 819 128
 
 diagrams
   active  classdiagram_ref 128070 // cd
-    1464 815 100 A4 0 0
+    1464 819 100 A4 0 0
 end
 show_stereotypes
-selected attribute_ref 130374 // symbolePEGI
+selected attribute_ref 130118 // dureePartie
 open
-  attribute_ref 129478 // nom
-  attribute_ref 129734 // genre
-  attribute_ref 129350 // ageMinimal
-  class_ref 128198 // Livre
-  class_ref 128454 // Abonne
   class_ref 128710 // JeuSocieté
   class_ref 128838 // JeuVideo
 end
