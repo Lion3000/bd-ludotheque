@@ -12,27 +12,27 @@ end
 classcanvas 128454 class_ref 128454 // Abonne
   classdiagramsettings member_max_width 0 end
   color darkgreen
-  xyz 456 125 2000
+  xyz 456 121 2000
 end
 classcanvas 128710 class_ref 128710 // JeuSocieté
   classdiagramsettings member_max_width 0 end
-  xyz 103 317 2000
+  xyz 103 313 2000
 end
 classcanvas 128966 class_ref 128838 // JeuVideo
   classdiagramsettings member_max_width 0 end
-  xyz 82 161 2000
+  xyz 82 158 2000
 end
 note 130886 "Diagramme de classes Ludothèque"
   xyzwh 24 4 0 783 425
 classcanvas 131142 class_ref 135366 // Film
   classdiagramsettings member_max_width 0 end
   color darkmagenta
-  xyzwh 120 75 2000 99 65
+  xyzwh 120 75 2000 117 71
 end
 classcanvas 131526 class_ref 135494 // Reduction
   classdiagramsettings member_max_width 0 end
   color darkgreen
-  xyz 633 58 2000
+  xyz 633 60 2000
 end
 relationcanvas 128838 relation_ref 128070 // <generalisation>
   decenter_begin 546
@@ -52,7 +52,7 @@ relationcanvas 130374 relation_ref 129094 // <unidirectional association>
   decenter_end 180
   from ref 128454 z 2001 to ref 128198
   no_role_a no_role_b
-  multiplicity_a_pos 631 273 3000 multiplicity_b_pos 566 265 3000
+  multiplicity_a_pos 630 276 3000 multiplicity_b_pos 582 278 3000
 end
 relationcanvas 131398 relation_ref 135878 // <generalisation>
   decenter_begin 856
@@ -63,11 +63,11 @@ end
 relationcanvas 131654 relation_ref 136006 // <unidirectional association>
   from ref 128454 z 2001 to ref 131526
   no_role_a no_role_b
-  multiplicity_a_pos 624 96 3000 multiplicity_b_pos 566 161 3000
+  multiplicity_a_pos 610 100 3000 multiplicity_b_pos 582 158 3000
 end
 relationcanvas 131782 relation_ref 136134 // <unidirectional association>
   from ref 128454 z 2001 to ref 128070
   no_role_a no_role_b
-  multiplicity_a_pos 371 235 3000 multiplicity_b_pos 427 217 3000
+  multiplicity_a_pos 383 241 3000 multiplicity_b_pos 423 225 3000
 end
 end

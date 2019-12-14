@@ -1,7 +1,7 @@
 format 222
 "Projet BD" // Projet BD
-  revision 4
-  modified_by 2 "AlphaSyne"
+  revision 5
+  modified_by 70 "Alex Zarzitski"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -272,7 +272,7 @@ format 222
 
       classrelation 136262 // <unidirectional association>
 	relation 136006 --->
-	  a role_name "" multiplicity "*" private
+	  a role_name "" multiplicity "0..1" private
 	    classrelation_ref 136262 // <unidirectional association>
 	  b multiplicity "*" parent class_ref 135494 // Reduction
       end
