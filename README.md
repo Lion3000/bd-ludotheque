@@ -17,16 +17,16 @@ Maël Vaillant--Beuchot
 - la photo de l'uml est a la racine "uml.png"
 
 ## Repartition des taches
-# Camelia Zarzitski Benhmida 
+### Camelia Zarzitski Benhmida 
 
-# Alex Zarzitski
+### Alex Zarzitski
 
-# Maël Vaillant--Beuchot
+### Maël Vaillant--Beuchot
 
 
 ## UML
-# Vert - Camelia Zarzitski Benhmida
-# Jaune - Alex Zarzitski
-# Violet - Maël Vaillant--Beuchot
+### Vert - Camelia Zarzitski Benhmida
+### Jaune - Alex Zarzitski
+### Violet - Maël Vaillant--Beuchot
 
 ![Alt text](uml.jpg?raw=true "UML")
