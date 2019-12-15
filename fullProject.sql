@@ -656,7 +656,7 @@ FROM ABONNE_O ab;
 /* Modification du titre du livre 1001 */
 
 UPDATE
-TABLE(SELECT a.nt_livres FROM abonne_oBis a
+TABLE(SELECT a.nt_livres FROM abonne_o a
 WHERE a.ABONNEID = 15) livres 
 SET livres.titre = 'NOUVEAU LIVRE' 
 WHERE livres.livreNo=1001;
@@ -683,5 +683,258 @@ WHERE articles.GENRE LIKE 'RPG';
 /
 
 
+/* ======================================= */
+/* Sortie standard lors du lancement de tout le script avec les tests à la fin */
+/*
+Table ARTICLE_O supprimé(e).
 
+
+Table FILM_O supprimé(e).
+
+
+Table JEUSOCIETE_O supprimé(e).
+
+
+Table JEUVIDEO_O supprimé(e).
+
+
+Table LIVRE_O supprimé(e).
+
+
+Table ABONNE_O supprimé(e).
+
+
+Table REDUCTION_O supprimé(e).
+
+
+Type AUTEURS_T supprimé(e).
+
+
+Type ARTICLE_T supprimé(e).
+
+
+Type FILM_T supprimé(e).
+
+
+Type JEUVIDEO_T supprimé(e).
+
+
+Type JEUSOCIETE_T supprimé(e).
+
+
+Type ABONNE_T supprimé(e).
+
+
+Type REDUCTION_T supprimé(e).
+
+
+Type LIVRE_T supprimé(e).
+
+
+Type TABACTEURSPRINC_T supprimé(e).
+
+
+Type TABLEARTICLES supprimé(e).
+
+
+Type TABLELIVRES supprimé(e).
+
+
+Elément Type ARTICLE_T compilé
+
+
+Elément Type FILM_T compilé
+
+
+Elément Type JEUVIDEO_T compilé
+
+
+Elément Type JEUSOCIETE_T compilé
+
+
+Elément Type LIVRE_T compilé
+
+
+Elément Type ABONNE_T compilé
+
+
+Elément Type REDUCTION_T compilé
+
+
+Elément Type TABACTEURSPRINC_T compilé
+
+
+Elément Type AUTEURS_T compilé
+
+
+Elément Type ARTICLE_T compilé
+
+
+Elément Type FILM_T compilé
+
+
+Elément Type JEUVIDEO_T compilé
+
+
+Elément Type JEUSOCIETE_T compilé
+
+
+Elément Type REDUCTION_T compilé
+
+
+Elément Type LIVRE_T compilé
+
+
+Elément Type TABLEARTICLES compilé
+
+
+Elément Type TABLELIVRES compilé
+
+
+Elément Type ABONNE_T compilé
+
+
+Elément Type Body ABONNE_T compilé
+
+
+Table ARTICLE_O créé(e).
+
+
+Table FILM_O créé(e).
+
+
+Elément Type Body FILM_T compilé
+
+
+Table JEUSOCIETE_O créé(e).
+
+
+Table JEUVIDEO_O créé(e).
+
+
+Table LIVRE_O créé(e).
+
+
+Table ABONNE_O créé(e).
+
+
+Table REDUCTION_O créé(e).
+
+
+Table ABONNE_O modifié(e).
+
+
+Index IDX_ABON_O_REDUC_REF créé(e).
+
+
+Index IDX_ABONNE_NAME créé(e).
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+1 ligne inséré.
+
+
+Procédure PL/SQL terminée.
+
+>>Resultat requete 0 :
+Citadelles	stratégie	3
+Pokemon rubis	aventure	5
+
+>>Resultat requete 1 :
+la ligne verte	AUTRE	23/04/08	7
+Apprenti épouventeur	AVENTURE	01/07/04	8
+Harry Potter et la chambre des secrets	FANTASTIQUE	02/07/98	10
+
+>>Resultat requete 2 :
+TERAYAMA	MATHILDE	11	REDUCTION DE NOËL
+
+>>Resultat requete 3 :
+RAMA	LUNA	F	12	4 rue Vernier 06560 Valbonne	REDUCTION DE NOËL
+TERAYAMA	MATHILDE	F	11	41 rue des usages 06200 Nice	REDUCTION DE NOËL
+FLORY	LAURA	F	8	40 rue de la lune 06500 Menton	REDUCTION DE NOËL
+BOPOU	LUCIEN	M	7	14 avenue des Canassons 06100 Nice	REDUCTION DE NOËL
+LEFUJI	ZEN	M	7	74 rue de la mairie 06500 Menton	REDUCTION DE NOËL
+BOILLOT	THOMAS	M	11	160 rue Garnier 06300 Nice	REDUCTION DE NOËL
+INGILA	MARY	F	9	226 promenade des anglais 0600 Nice	REDUCTION Black Friday
+LABEILLE	MAYA	F	14	11 bd Gambetta 06000 Nice	REDUCTION Black Friday
+ABDELLI	RAMI	M	13	210 rue des luciole 06560 Valbonne	REDUCTION Black Friday
+
+>>Resultat requete 4 :
+MATHILDE	TERAYAMA	1
+TAHA	BAKER	3
+MOMO	CORY	1
+MAYA	LABEILLE	3
+HAKU	SHOU	2
+
+>>Resultat requete 5 :
+{<ABNOM=BOILLOT,ABPRENOM=JERRY,TITRE=Fallout 4,GENRE=RPG,DATEPARUTION=01/12/15>,}
+{<ABNOM=RAMA,ABPRENOM=SERGIO,TITRE=Le désert interdit,GENRE=stratégie,DATEPARUTION=21/12/05>,<ABNOM=RAMA,ABPRENOM=SERGIO,TITRE=Mario Kart,GENRE=course,DATEPARUTION=01/12/05>,}
+{<ABNOM=RAMA,ABPRENOM=LUNA,TITRE=Citadelles,GENRE=stratégie,DATEPARUTION=04/08/16>,<ABNOM=RAMA,ABPRENOM=LUNA,TITRE=Pokemon rubis,GENRE=aventure,DATEPARUTION=01/12/16>,}
+{<ABNOM=TERAYAMA,ABPRENOM=MATHILDE,TITRE=Les Batisseurs - Antiquite,GENRE=stratégie,DATEPARUTION=14/10/19>,<ABNOM=TERAYAMA,ABPRENOM=MATHILDE,TITRE=Croque Carotte,GENRE=jeu de parcours,DATEPARUTION=27/06/07>,<ABNOM=TERAYAMA,ABPRENOM=MATHILDE,TITRE=Along the Edge,GENRE=aventure,DATEPARUTION=01/12/19>,}
+{<ABNOM=BAKER,ABPRENOM=TAHA,TITRE=Sushi Go,GENRE=jeu de parcours,DATEPARUTION=27/06/07>,}
+{}
+{<ABNOM=FLORY,ABPRENOM=LAURA,TITRE=Pictionary,GENRE=dessin,DATEPARUTION=16/08/03>,}
+{<ABNOM=BOPOU,ABPRENOM=LUCIEN,TITRE=Minecraft,GENRE=RPG,DATEPARUTION=01/12/14>,<ABNOM=BOPOU,ABPRENOM=LUCIEN,TITRE=Lara croft,GENRE=RPG,DATEPARUTION=01/12/02>,}
+{}
+{}
+{<ABNOM=INGILA,ABPRENOM=MARY,TITRE=Star Wars Jedi: Fallen Order,GENRE=jeu de plateforme,DATEPARUTION=01/12/19>,}
+{}
+{<ABNOM=ABDELLI,ABPRENOM=RAMI,TITRE=Need for Speed,GENRE=course,DATEPARUTION=01/12/07>,}
+{<ABNOM=SHOU,ABPRENOM=HAKU,TITRE=Tetris,GENRE=réflexion,DATEPARUTION=01/12/07>,}
+{}
+
+
+0 lignes mis à jour.
+
+
+1 ligne mis à jour.
+
+
+3 lignes supprimé.
+
+
+0 lignes supprimé.
+
+*/
 
