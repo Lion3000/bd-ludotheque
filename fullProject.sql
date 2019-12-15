@@ -67,10 +67,10 @@ create or replace type ARTICLE_T AS OBJECT (
 /* Création du type film */
 create or replace type FILM_T UNDER ARTICLE_T (
     REALISATEUR   varchar2(50),
-    ACTEURS_PRINC   tabActeursPrinc_t
+    ACTEURS_PRINC   tabActeursPrinc_t,
 
 MEMBER FUNCTION getTotalRealisateurs return SYS_REFCURSOR,
-MEMBER FUNCTION getTotalActeursPrinc return SYS_REFCURSOR
+MEMBER FUNCTION getFilms return SYS_REFCURSOR
 );
 /
 
@@ -187,6 +187,7 @@ create table film_o of film_t(
 );
 /
 
+/* Création du corps des fonctions du type film */
 create or replace type body FILM_T AS
 	MEMBER FUNCTION getTotalRealisateurs return SYS_REFCURSOR
     is
@@ -197,14 +198,14 @@ create or replace type body FILM_T AS
         return c;
 	end getTotalRealisateurs;
     
-    MEMBER FUNCTION getTotalActeursPrinc return SYS_REFCURSOR
+    MEMBER FUNCTION getFilms return SYS_REFCURSOR
     is
         c SYS_REFCURSOR;
     begin
         OPEN c for
-        SELECT * FROM FILM_O F1; /* temporaire */
+        SELECT * FROM FILM_O F1;
         return c;
-	end getTotalActeursPrinc;
+	end getFilms;
 end;
 /
 
