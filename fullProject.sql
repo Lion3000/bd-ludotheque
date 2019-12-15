@@ -682,6 +682,45 @@ WHERE ab.ABONNEID=3 ) articles
 WHERE articles.GENRE LIKE 'RPG';
 /
 
+/* FICHIER VOLUMINEUX CLOB */
+/* Voici la partie permettant de remplir le clob à partir d'un fichier (en utilisant Bfile) */
+/* /!\/!\/!\ Cette partie est la seule qui ne fonctionne pas correctement /!\/!\/!\ */
+/* Les tests ne sont pas concluants malgré l'utilisation du cours fourni */
+/* le clob se situe dans le type livre - champs couverture */
+delete from bfiles;
+drop directory bfile_dir;
+create table bfiles(
+id number (5),
+text bfile);
+
+CREATE OR REPLACE DIRECTORY bfile_dir
+AS 'D:/Users/Alex Zarzitski/Desktop/M1/DB/bd-ludotheque/clob/';
+
+INSERT INTO bfiles
+VALUES(1, BFILENAME('BFILE_DIR', 'fichierClob.txt'));
+
+declare
+cursor c is
+select id, text from bfiles;
+v_clob clob;
+lg number(38);
+begin
+for j in c
+loop
+	Dbms_Lob.FileOpen ( j.text, Dbms_Lob.File_Readonly );
+	lg:=Dbms_Lob.GETLENGTH(j.text);
+	update livre_o set couverture = empty_clob() where livreno = 1	returning couverture into v_clob;
+	Dbms_Lob.LoadFromFile(
+	dest_lob => v_clob,
+	src_lob => j.text,
+	amount => lg,
+	dest_offset => 1,
+	src_offset => 1);
+	Dbms_Lob.FileClose ( j.text );
+end loop;
+commit;
+end;
+
 
 /* ======================================= */
 /* Sortie standard lors du lancement de tout le script avec les tests à la fin */
