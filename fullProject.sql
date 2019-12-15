@@ -68,6 +68,7 @@ create or replace type FILM_T UNDER ARTICLE_T (
     REALISATEUR   varchar2(50),
     ACTEURS_PRINC   tabActeursPrinc_t,
 
+MEMBER FUNCTION getRealisateurs return SYS_REFCURSOR,
 MEMBER FUNCTION getTotalRealisateurs return SYS_REFCURSOR,
 MEMBER FUNCTION getFilms return SYS_REFCURSOR
 );
@@ -181,6 +182,15 @@ create table film_o of film_t(
 
 /* Création du corps des fonctions du type film */
 create or replace type body FILM_T AS
+	MEMBER FUNCTION getRealisateurs return SYS_REFCURSOR
+    is
+        c SYS_REFCURSOR;
+    begin
+        OPEN c for
+        SELECT DISTINCT F1.REALISATEUR FROM FILM_O F1;
+        return c;
+	end getRealisateurs;
+    
 	MEMBER FUNCTION getTotalRealisateurs return SYS_REFCURSOR
     is
         c SYS_REFCURSOR;
@@ -631,9 +641,9 @@ WHERE CARDINALITY(NT_LIVRES) > 0;
 */
 
 SELECT CURSOR(
-SELECT ab.ABNOM, ab.ABPRENOM, ar.column_value.TITRE, ar.column_value.GENRE,
-ar.column_value.DATEPARUTION
-FROM TABLE (ab.NT_ARTICLES) ar WHERE ar.column_value.DATEPARUTION > TO_DATE('2001', 'YYYY'))
+SELECT ab.ABNOM, ab.ABPRENOM, ar.TITRE, ar.GENRE,
+ar.DATEPARUTION
+FROM TABLE (ab.NT_ARTICLES) ar WHERE ar.DATEPARUTION > TO_DATE('2001', 'YYYY'))
 FROM ABONNE_O ab;
 /
 
@@ -669,7 +679,7 @@ WHERE ab.ABONNEID=12 ) NT_LIVRES
 DELETE FROM TABLE(
 SELECT ab.NT_ARTICLES FROM ABONNE_O ab
 WHERE ab.ABONNEID=3 ) articles
-WHERE articles.column_value.GENRE LIKE 'RPG';
+WHERE articles.GENRE LIKE 'RPG';
 /
 
 
