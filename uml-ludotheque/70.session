@@ -5,9 +5,13 @@ diagrams
     1464 819 100 A4 0 0
 end
 show_stereotypes
-selected attribute_ref 130118 // dureePartie
+selected attribute_ref 137926 // date_fin
 open
+  attribute_ref 128258 // dateParution
+  attribute_ref 129222 // couverture
+  operation_ref 128258 // retournerArticle
   class_ref 128710 // JeuSocieté
-  class_ref 128838 // JeuVideo
+  attribute_ref 130374 // symbolePEGI
+  class_ref 135494 // Reduction
 end
 end
