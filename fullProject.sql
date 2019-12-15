@@ -11,7 +11,6 @@ drop table JEUVIDEO_O cascade constraints;
 drop table LIVRE_O cascade constraints;
 drop table ABONNE_O cascade constraints;
 drop table REDUCTION_O cascade constraints;
-drop type ACTEURSPRINC_T force;
 drop type AUTEURS_T force;
 drop type ARTICLE_T force;
 drop type FILM_T force;
@@ -145,7 +144,6 @@ create or replace type ABONNE_T AS OBJECT(
 	NT_LIVRES			tableLivres,
 	REDUCTION_REF		REF REDUCTION_T,
 	MAP MEMBER FUNCTION compAbonne RETURN VARCHAR2
-	/*MEMBER PROCEDURE emprunterArticle(SELF IN OUT ABONNE_T, article IN ARTICLE_T)*/
 	);
 /
 
@@ -155,12 +153,6 @@ CREATE OR REPLACE TYPE BODY ABONNE_T IS
 	BEGIN
 		RETURN ABNOM||ABPRENOM;
 	END;
-	/*MEMBER PROCEDURE emprunterArticle(SELF IN OUT ABONNE_T, article IN ARTICLE_T) IS
-	BEGIN
-		INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM abonne_o a
-			WHERE a.ABONNEID = SELF.ABONNEID)
-		VALUES (article);
-	END;*/
 END;
 /
 
@@ -651,6 +643,17 @@ FROM ABONNE_O ab;
 	UPDATE
 */
 
+/* Modification du titre du livre 1001 */
+
+UPDATE
+TABLE(SELECT a.nt_livres FROM abonne_oBis a
+WHERE a.ABONNEID = 15) livres 
+SET livres.titre = 'NOUVEAU LIVRE' 
+WHERE livres.livreNo=1001;
+
+/* Modification la réduction de l'abonné 4 */
+UPDATE ABONNE_O a SET REDUCTION_REF = (SELECT REF(reduc) FROM reduction_o reduc WHERE REDUCTIONID = 3) 
+WHERE a.ABONNEID = 3;
 
 /*
 	SUPPRESSIONS
