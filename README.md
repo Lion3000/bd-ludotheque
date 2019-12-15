@@ -29,4 +29,4 @@ Maël Vaillant--Beuchot
 - Jaune - Alex Zarzitski
 - Violet - Maël Vaillant--Beuchot
 
-![Alt text](uml.jpg?raw=true "UML")
+![Alt text](/uml.jpg?raw=true "UML")
