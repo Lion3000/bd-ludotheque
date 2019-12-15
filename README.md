@@ -29,7 +29,12 @@
    - gestion du clob en collaboration avec Camelia
    
 - Maël Vaillant--Beuchot
-   
+   - Création des types et tables articles et films
+   - Gestion de l'héritage avec films qui hérite d'articles
+   - Création des trois méthodes de films
+   - Insertions des données de la table films
+   - Aide à la création des VARRAY et NESTED TABLE utilisées dans le projet
+   - Nettoyage et vérification du code final
 
 ## UML
 - Vert - Camelia Zarzitski Benhmida
