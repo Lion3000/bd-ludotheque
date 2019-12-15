@@ -68,6 +68,9 @@ create or replace type ARTICLE_T AS OBJECT (
 create or replace type FILM_T UNDER ARTICLE_T (
     REALISATEUR   varchar2(50),
     ACTEURS_PRINC   tabActeursPrinc_t
+
+MEMBER FUNCTION getTotalRealisateurs return SYS_REFCURSOR,
+MEMBER FUNCTION getTotalActeursPrinc return SYS_REFCURSOR
 );
 /
 
@@ -182,6 +185,27 @@ create table article_o of article_t(
 create table film_o of film_t(
 	CONSTRAINT nnl_film_o_realisateur REALISATEUR NOT NULL
 );
+/
+
+create or replace type body FILM_T AS
+	MEMBER FUNCTION getTotalRealisateurs return SYS_REFCURSOR
+    is
+        c SYS_REFCURSOR;
+    begin
+        OPEN c for
+        SELECT count(DISTINCT F1.REALISATEUR) FROM FILM_O F1;
+        return c;
+	end getTotalRealisateurs;
+    
+    MEMBER FUNCTION getTotalActeursPrinc return SYS_REFCURSOR
+    is
+        c SYS_REFCURSOR;
+    begin
+        OPEN c for
+        SELECT * FROM FILM_O F1; /* temporaire */
+        return c;
+	end getTotalActeursPrinc;
+end;
 /
 
 /*
@@ -397,6 +421,7 @@ INSERT INTO FILM_O VALUES (7, 'V for Vendetta', 'Anticipation', 16, 'Warner Bros
 INSERT INTO FILM_O VALUES (8, 'Will Hunting', 'Comedie dramatique', 13, 'Miramax Films', TO_DATE('1997', 'yyyy'), 'Gus Van Sant', TABACTEURSPRINC_T('Matt Damon','Robin Williams','Ben Affleck','Minnie Driver'));
 INSERT INTO FILM_O VALUES (9, 'The Social Network', 'Drame biographique', 13, 'Michael De Luca', TO_DATE('2010', 'yyyy'), 'David Fincher', TABACTEURSPRINC_T('Jesse Eisenberg','Andrew Garfield','Justin Timberlake'));
 INSERT INTO FILM_O VALUES (10, 'Shutter Island', 'Thriller psychologique', 16, 'Phoenix Pictures', TO_DATE('2010', 'yyyy'), 'Martin Scorsese', TABACTEURSPRINC_T('Leonardo DiCaprio','Mark Ruffalo','Ben Kingsley'));
+INSERT INTO FILM_O VALUES (11, 'Inception', 'Sci-fi', 10, 'Warner Bros.', TO_DATE('2010', 'yyyy'), 'Christopher Nolan', TABACTEURSPRINC_T('Leonardo DiCaprio','Ellen Page','Ken Watanabe','Marion Cotillard','Jospeh Gordon'));
 
 
 INSERT INTO JEUSOCIETE_O JS VALUES (1, 'Cluedo', 'Enigme', 10, 'Hasbro', TO_DATE('07/01/1999', 'DD/MM/YYYY'), 2, 5, 30)returning ref(JS) into jeuSociete1;
