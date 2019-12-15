@@ -1,0 +1,3 @@
+bonjour
+voici un clob
+je suis un fichier très volumineux

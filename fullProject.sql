@@ -20,14 +20,9 @@ drop type JEUSOCIETE_T force;
 drop type ABONNE_T force;
 drop type REDUCTION_T force;
 drop type LIVRE_T force;
-drop type LISTREFARTICLE_T force;
-drop type LISTREFFILM_T force;
-drop type listRefAbonne_t force;
 drop type tabActeursPrinc_t force;
 drop type tableArticles force;
-drop type tableReductions force;
 drop type tableLivres force;
-
 
 /*
 =====================================================
@@ -51,23 +46,9 @@ create or replace type ABONNE_T;
 create or replace type REDUCTION_T;
 /
 
-
-/* Création des listes de référence */
-create or replace type listRefArticle_t as table of REF ARTICLE_T;
-/
 create or replace type tabActeursPrinc_t as varray(5) of varchar2(70);
 /
-create or replace type AUTEURS_T as varray(5) of varchar2(70)
-/
-create or replace type listRefFilm_t as table of REF FILM_T;
-/
-create or replace type listRefAbonne_t as table of REF ABONNE_T;
-/
-create or replace type tableArticles IS TABLE OF REF ARTICLE_T;
-/
-create or replace type tableReductions IS TABLE OF REF REDUCTION_T;
-/
-create or replace type tableLivres IS TABLE OF REF LIVRE_T;
+create or replace type AUTEURS_T as varray(5) of varchar2(70);
 /
 
 /* Création du type article */
@@ -110,25 +91,6 @@ create or replace type JEUSOCIETE_T UNDER ARTICLE_T (
 /
 
 /*
-Création du type Abonne_t
-*/
-create or replace type ABONNE_T AS OBJECT(
-	ABONNEID			number(8),	
-	ABPRENOM			varchar2(25), 
-	ABNOM				varchar2(50), 
-	ABAGE				number(20),
-	ABSEXE				char(1),	
-	ABADRESSE			varchar2(70),
-	DATE_INSCRIPTION	date,
-	NT_ARTICLES			tableArticles,
-	NT_LIVRES			tableLivres,
-	REDUCTION_REF			REF REDUCTION_T,
-	 	
-	ORDER MEMBER function compAbonne (emp IN ABONNE_T) return number
-);
-/
-
-/*
 Création du type reduction_t
 */
 create or replace type REDUCTION_T AS OBJECT(
@@ -156,6 +118,47 @@ create or replace type LIVRE_T AS OBJECT(
 	
 	ORDER MEMBER function compLivre (livre IN LIVRE_T) return number
 );
+/
+/* Création des listes de référence */
+
+create or replace type tableArticles IS TABLE OF ARTICLE_T;
+/
+create or replace type tableLivres IS TABLE OF LIVRE_T;
+/
+
+/*
+Création du type Abonne_t
+*/
+
+create or replace type ABONNE_T AS OBJECT(
+	ABONNEID			number(8),	
+	ABPRENOM			varchar2(25), 
+	ABNOM				varchar2(50), 
+	ABAGE				number(20),
+	ABSEXE				char(1),	
+	ABADRESSE			varchar2(70),
+	DATE_INSCRIPTION	date,
+	NT_ARTICLES			tableArticles,
+	NT_LIVRES			tableLivres,
+	REDUCTION_REF		REF REDUCTION_T,
+	MAP MEMBER FUNCTION compAbonne RETURN VARCHAR2
+	/*MEMBER PROCEDURE emprunterArticle(SELF IN OUT ABONNE_T, article IN ARTICLE_T)*/
+	);
+/
+
+CREATE OR REPLACE TYPE BODY ABONNE_T IS
+	MAP MEMBER FUNCTION compAbonne
+	RETURN VARCHAR2 IS
+	BEGIN
+		RETURN ABNOM||ABPRENOM;
+	END;
+	/*MEMBER PROCEDURE emprunterArticle(SELF IN OUT ABONNE_T, article IN ARTICLE_T) IS
+	BEGIN
+		INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM abonne_o a
+			WHERE a.ABONNEID = SELF.ABONNEID)
+		VALUES (article);
+	END;*/
+END;
 /
 
 /*
@@ -314,7 +317,7 @@ INSERTION DANS LES TABLES
 	INSERT INTO ABONNE_O VALUES (13, 'RAMI', 'ABDELLI', 13, 'M', '210 rue des luciole 06560 Valbonne',  TO_DATE('01/11/2011', 'DD/MM/YYYY'), tableArticles(), tableLivres(), NULL);
 	INSERT INTO ABONNE_O VALUES (14, 'HAKU', 'SHOU', 15, 'M', '12 rue du joyau 06100 Nice',  TO_DATE('28/11/2010', 'DD/MM/YYYY'), tableArticles(), tableLivres(), NULL);
 	INSERT INTO ABONNE_O VALUES (15, 'KIRA', 'LEONI', 10, 'M', '21 rue St Jean 06200 Nice',  TO_DATE('28/11/2010', 'DD/MM/YYYY'), tableArticles(), tableLivres(), NULL);
-	
+
 /*
 INSERTION en utilisant PL/SQL
 */
@@ -377,6 +380,11 @@ INSERT INTO LIVRE_O LO VALUES (7, 'la ligne verte', 'AUTRE', AUTEURS_T('Stephen 
 INSERT INTO LIVRE_O LO VALUES (8, 'Apprenti épouventeur', 'AVENTURE', AUTEURS_T('Joseph Delaney'), 275, 12, TO_DATE('01/07/2004', 'DD/MM/YYYY'), EMPTY_CLOB())returning ref(LO) into livre8;
 INSERT INTO LIVRE_O LO VALUES (9, 'Tom-Tom et Nana, Tome 2 : Tom-Tom et ses idées explosives', 'BD', AUTEURS_T('unbekannt'), 512, 14, TO_DATE('01/04/2004', 'DD/MM/YYYY'), EMPTY_CLOB())returning ref(LO) into livre9;
 INSERT INTO LIVRE_O LO VALUES (10, 'Harry Potter et la chambre des secrets', 'FANTASTIQUE', AUTEURS_T('J. K. Rowling'), 368, 24, TO_DATE('02/07/1998', 'DD/MM/YYYY'), EMPTY_CLOB())returning ref(LO) into livre10;
+INSERT INTO LIVRE_O LO VALUES (11, 'Le petit prince', 'FANTASTIQUE', AUTEURS_T('Antoine de St exupéry'), 140, 24, TO_DATE('02/07/1998', 'DD/MM/YYYY'), EMPTY_CLOB());
+INSERT INTO LIVRE_O LO VALUES (12, 'Les Misérables', 'AUTRE', AUTEURS_T('Victor Hugo'), 368, 24, TO_DATE('02/07/1998', 'DD/MM/YYYY'), EMPTY_CLOB());
+INSERT INTO LIVRE_O LO VALUES (13, 'Le Seigneur des Anneaux, Tome 1', 'FANTASTIQUE', AUTEURS_T('JRR Tolkien'), 368, 24, TO_DATE('02/07/1998', 'DD/MM/YYYY'), EMPTY_CLOB());
+INSERT INTO LIVRE_O LO VALUES (14, 'La Bicyclette bleue, tome 1', 'FANTASTIQUE', AUTEURS_T('Régine Deforges'), 368, 24, TO_DATE('02/07/1998', 'DD/MM/YYYY'), EMPTY_CLOB());
+INSERT INTO LIVRE_O LO VALUES (15, 'Tchoupi va à la plage', 'BD', AUTEURS_T('J. K. Rowling'), 368, 24, TO_DATE('02/07/1998', 'DD/MM/YYYY'), EMPTY_CLOB());
 
 
 INSERT INTO FILM_O VALUES (1, 'Interstellar', 'Sci-fi', 10, 'Warner Bros.', TO_DATE('2014', 'yyyy'), 'Christopher Nolan', TABACTEURSPRINC_T('Matthew McConaughey','Anne Hathaway','Jessica Chastain','Michael Caine','Mackenzie Foy'));
@@ -425,101 +433,107 @@ INSERT INTO REDUCTION_O RO VALUES (4, 'REDUCTION PAQUES', TO_DATE('12/04/2020', 
 /* Insertions de JEUSOCIETE REF dans la nested tables NT_ARTICLES */
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 1)values (jeuSociete1);	
+WHERE a.ABONNEID = 1)values (DEREF(jeuSociete1));	
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 1)values (jeuSociete2);
+WHERE a.ABONNEID = 2)values (DEREF(jeuSociete2));
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 1)values (jeuSociete3);
+WHERE a.ABONNEID = 3)values (DEREF(jeuSociete3));
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 2)values (jeuSociete4);	
+WHERE a.ABONNEID = 4)values (DEREF(jeuSociete4));	
+
+INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
+WHERE a.ABONNEID = 4)values (DEREF(jeuSociete5));
+
+INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
+WHERE a.ABONNEID = 5)values (DEREF(jeuSociete6));
+
+INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
+WHERE a.ABONNEID = 5)values (DEREF(jeuSociete7));
+
+INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
+WHERE a.ABONNEID = 6)values (DEREF(jeuSociete8));
+
+INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
+WHERE a.ABONNEID = 7)values (DEREF(jeuSociete9));
 
 /* Insertions de JEUVIDEO REF dans la nested tables NT_ARTICLES */
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 3)values (jeuVideo1);	
+WHERE a.ABONNEID = 8)values (DEREF(jeuVideo1));	
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 3)values (jeuVideo7);
+WHERE a.ABONNEID = 8)values (DEREF(jeuVideo2));	
+
+INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
+WHERE a.ABONNEID = 1)values (DEREF(jeuVideo3));
+
+INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
+WHERE a.ABONNEID = 2)values (DEREF(jeuVideo4));
 	
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 3)values (jeuVideo5);	
+WHERE a.ABONNEID = 3)values (DEREF(jeuVideo5));	
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 3)values (jeuVideo6);	
+WHERE a.ABONNEID = 4)values (DEREF(jeuVideo6));	
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 4)values (jeuVideo2);	
+WHERE a.ABONNEID = 14)values (DEREF(jeuVideo7));
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 4)values (jeuVideo3);
+WHERE a.ABONNEID = 13)values (DEREF(jeuVideo8));
 
 INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 4)values (jeuVideo4);
+WHERE a.ABONNEID = 15)values (DEREF(jeuVideo9));
+
+INSERT INTO TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
+WHERE a.ABONNEID = 11)values (DEREF(jeuVideo10));
 
 /* Insertions de LIVRE REF dans la nested table NT_LIVRES */
 INSERT INTO TABLE(SELECT a.NT_LIVRES FROM ABONNE_O a
-WHERE a.ABONNEID = 5)values (livre1);
+WHERE a.ABONNEID = 5)values (DEREF(livre1));
 
 INSERT INTO TABLE(SELECT a.NT_LIVRES FROM ABONNE_O a
-WHERE a.ABONNEID = 5)values (livre2);
+WHERE a.ABONNEID = 5)values (DEREF(livre2));
 
 INSERT INTO TABLE(SELECT a.NT_LIVRES FROM ABONNE_O a
-WHERE a.ABONNEID = 5)values (livre3);
+WHERE a.ABONNEID = 5)values (DEREF(livre3));
 
 INSERT INTO TABLE(SELECT a.NT_LIVRES FROM ABONNE_O a
-WHERE a.ABONNEID = 6)values (livre4);
+WHERE a.ABONNEID = 6)values (DEREF(livre4));
 
 
 /* INSERTIONS INDIRECTES dans la nested table NT_LIVRES */
 INSERT INTO
 TABLE(SELECT a.nt_livres FROM ABONNE_O a
-WHERE a.ABONNEID = 14)SELECT REF(lo) FROM livre_o lo
+WHERE a.ABONNEID = 14)SELECT * FROM livre_o lo
 WHERE lo.livreNo=5;
 
 INSERT INTO
 TABLE(SELECT a.nt_livres FROM ABONNE_O a
-WHERE a.ABONNEID = 4)SELECT REF(lo) FROM livre_o lo
+WHERE a.ABONNEID = 4)SELECT * FROM livre_o lo
 WHERE lo.livreNo=6;
 
 INSERT INTO
 TABLE(SELECT a.nt_livres FROM ABONNE_O a
-WHERE a.ABONNEID = 12)SELECT REF(lo) FROM livre_o lo
+WHERE a.ABONNEID = 12)SELECT * FROM livre_o lo
 WHERE lo.livreNo=7;
 
 INSERT INTO
 TABLE(SELECT a.nt_livres FROM ABONNE_O a
-WHERE a.ABONNEID = 12)SELECT REF(lo) FROM livre_o lo
+WHERE a.ABONNEID = 12)SELECT * FROM livre_o lo
 WHERE lo.livreNo=8;
 
 INSERT INTO
 TABLE(SELECT a.nt_livres FROM ABONNE_O a
-WHERE a.ABONNEID = 14)SELECT REF(lo) FROM livre_o lo
+WHERE a.ABONNEID = 14)SELECT * FROM livre_o lo
 WHERE lo.livreNo=9;
 
 INSERT INTO
 TABLE(SELECT a.nt_livres FROM ABONNE_O a
-WHERE a.ABONNEID = 12)SELECT REF(lo) FROM livre_o lo
+WHERE a.ABONNEID = 12)SELECT * FROM livre_o lo
 WHERE lo.livreNo=10;
-
-/* Insertion indirecte dans la nested table NT_ARTICLES */
-
-INSERT INTO
-TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 2)SELECT REF(jo) FROM jeuvideo_o jo
-WHERE jo.ARTICLEID=8;
-
-INSERT INTO
-TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 2)SELECT REF(jo) FROM jeuvideo_o jo
-WHERE jo.ARTICLEID=9;
-
-INSERT INTO
-TABLE(SELECT a.NT_ARTICLES FROM ABONNE_O a
-WHERE a.ABONNEID = 11)SELECT REF(jo) FROM jeuvideo_o jo
-WHERE jo.ARTICLEID=10;
-
 
 /* ajout de réductions */
 
@@ -540,7 +554,7 @@ UPDATE ABONNE_O a SET REDUCTION_REF = reduction2
 WHERE a.ABONNEID BETWEEN 11 AND 13;
 
 end;
-
+/
 /*
 	REQUÊTES DE SELECTION 
 */
@@ -549,7 +563,7 @@ end;
 	SELECTION SUR NESTED TABLE
 	sélection des articles (titre, genre et id) de l'abonné avec l'id 2
 */
-SELECT abArticles.column_value.titre as titre, abArticles.column_value.genre as genre, abArticles.column_value.ARTICLEID as id
+SELECT abArticles.titre as titre, abArticles.genre as genre, abArticles.ARTICLEID as id
 FROM
 TABLE(SELECT a.NT_ARTICLES
 FROM ABONNE_O a
@@ -559,7 +573,7 @@ WHERE a.ABONNEID = 3) abArticles;
 	SELECTION SUR NESTED TABLE
 	sélection des livres (titre, genre et id) de l'abonné avec l'id 12
 */
-SELECT abl.column_value.titre as titre, abl.column_value.genre as genre, abl.column_value.dateDeParution as dateDeParution, abl.column_value.livreNo as id
+SELECT abl.titre as titre, abl.genre as genre, abl.dateDeParution as dateDeParution, abl.livreNo as id
 FROM
 TABLE(SELECT a.NT_LIVRES
 FROM ABONNE_O a
@@ -598,7 +612,6 @@ WHERE CARDINALITY(NT_LIVRES) > 0;
 	SELECTION de la liste d'article parus après 2001 des abonnés
 */
 
-
 SELECT CURSOR(
 SELECT ab.ABNOM, ab.ABPRENOM, ar.column_value.TITRE, ar.column_value.GENRE,
 ar.column_value.DATEPARUTION
@@ -606,6 +619,8 @@ FROM TABLE (ab.NT_ARTICLES) ar WHERE ar.column_value.DATEPARUTION > TO_DATE('200
 FROM ABONNE_O ab;
 /
 
+
+/* Tous les livres qui n'ont pas été*/
 /*
 	UPDATE
 */
