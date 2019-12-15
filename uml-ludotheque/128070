@@ -1,6 +1,6 @@
 format 222
 "Projet BD" // Projet BD
-  revision 6
+  revision 7
   modified_by 70 "Alex Zarzitski"
   // class settings
   
@@ -305,7 +305,7 @@ format 222
 
       classrelation 136262 // <unidirectional association>
 	relation 136006 --->
-	  a role_name "" multiplicity "0..1" private
+	  a role_name "" multiplicity "*" private
 	    classrelation_ref 136262 // <unidirectional association>
 	  b multiplicity "*" parent class_ref 135494 // Reduction
       end
