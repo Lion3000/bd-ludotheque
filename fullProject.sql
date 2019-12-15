@@ -11,7 +11,6 @@ drop table JEUVIDEO_O cascade constraints;
 drop table LIVRE_O cascade constraints;
 drop table ABONNE_O cascade constraints;
 drop table REDUCTION_O cascade constraints;
-drop type ACTEURSPRINC_T force;
 drop type AUTEURS_T force;
 drop type ARTICLE_T force;
 drop type FILM_T force;
