@@ -21,12 +21,13 @@
   - Sélection d'objets à travers les références
   - insertion d'objets dans les différentes tables et nested tables
   - suppression et update des objets, objets dans nested tables et références (listes de films, de livres et d'articles)
+  - gestion de l'objet volumineux clob en collaboration avec Alex
   
 - Alex Zarzitski
    - Création des types et tables jeu video, jeu societe et livre 
    - gestion de l'héritage (jeuvideo et jeusociete héritant de article)
    - programmation de l'interface web avec Java JEE connecté à Oracle local
-   - gestion du clob en collaboration avec Camelia
+   - gestion de l'objet volumineux clob en collaboration avec Camelia
    
 - Maël Vaillant--Beuchot
    - Création des types et tables articles et films
