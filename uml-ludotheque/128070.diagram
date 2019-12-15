@@ -20,7 +20,7 @@ classcanvas 128710 class_ref 128710 // JeuSocieté
 end
 classcanvas 128966 class_ref 128838 // JeuVideo
   classdiagramsettings member_max_width 0 end
-  xyz 82 158 2000
+  xyz 78 174 2000
 end
 note 130886 "Diagramme de classes Ludothèque"
   xyzwh 24 4 0 783 425
@@ -52,7 +52,7 @@ relationcanvas 130374 relation_ref 129094 // <unidirectional association>
   decenter_end 180
   from ref 128454 z 2001 to ref 128198
   no_role_a no_role_b
-  multiplicity_a_pos 630 276 3000 multiplicity_b_pos 582 278 3000
+  multiplicity_a_pos 630 277 3000 multiplicity_b_pos 582 292 3000
 end
 relationcanvas 131398 relation_ref 135878 // <generalisation>
   decenter_begin 856
@@ -63,11 +63,11 @@ end
 relationcanvas 131654 relation_ref 136006 // <unidirectional association>
   from ref 128454 z 2001 to ref 131526
   no_role_a no_role_b
-  multiplicity_a_pos 610 100 3000 multiplicity_b_pos 582 158 3000
+  multiplicity_a_pos 600 138 3000 multiplicity_b_pos 582 178 3000
 end
 relationcanvas 131782 relation_ref 136134 // <unidirectional association>
   from ref 128454 z 2001 to ref 128070
   no_role_a no_role_b
-  multiplicity_a_pos 383 241 3000 multiplicity_b_pos 423 225 3000
+  multiplicity_a_pos 383 250 3000 multiplicity_b_pos 423 234 3000
 end
 end

@@ -1,6 +1,6 @@
 format 222
 "Projet BD" // Projet BD
-  revision 5
+  revision 6
   modified_by 70 "Alex Zarzitski"
   // class settings
   
@@ -65,6 +65,17 @@ format 222
       explicit_switch_type ""
       mysql_decl ""
       
+      attribute 137286 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
       attribute 129478 "titre"
 	private explicit_type "string"
 	cpp_decl ""
@@ -131,6 +142,17 @@ format 222
       explicit_switch_type ""
       mysql_decl ""
       
+      attribute 137158 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
       attribute 128070 "titre"
 	private explicit_type ""
 	cpp_decl ""
@@ -213,6 +235,17 @@ format 222
 	  a role_name "" multiplicity "*" private
 	    classrelation_ref 129350 // <unidirectional association>
 	  b multiplicity "0..1" parent class_ref 128198 // Livre
+      end
+
+      attribute 137030 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
       end
 
       attribute 128710 "nom"
@@ -456,6 +489,49 @@ format 222
       explicit_switch_type ""
       mysql_decl ""
       
+      attribute 136902 "id"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137670 "nom"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137798 "date_debut"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 137926 "date_fin"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
     end
   end
 end
