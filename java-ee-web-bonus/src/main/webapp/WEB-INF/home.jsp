@@ -49,7 +49,7 @@
                     <tbody>
                         <% 
                         ResultSet listeAbonnes = (ResultSet)request.getAttribute("listeAbonnes");
-                        while (listeAbonnes.next()) {
+                        while ( listeAbonnes != null && listeAbonnes.next()) {
                         %>
                         <tr>
                             <td><% out.println(listeAbonnes.getString("ABONNEID")); %></td>
