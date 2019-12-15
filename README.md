@@ -1,8 +1,8 @@
 # Projet de BD - M1
 ## Groupe :
-Camelia Zarzitski Benhmida
-Alex Zarzitski
-Maël Vaillant--Beuchot
+- Camelia Zarzitski Benhmida
+- Alex Zarzitski
+- Maël Vaillant--Beuchot
 
 ## Contraintes
 - Rendre le résultat dans un seul script. Ce script doit aussi contenir les tests et les résultat des tests
