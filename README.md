@@ -6,23 +6,30 @@
 
 ## Contraintes
 - Rendre le résultat dans un seul script. Ce script doit aussi contenir les tests et les résultat des tests
-- Implémenter l’héritage est aussi un plus
 - Dernier délai : 15 décembre 2019
 
 ## Compte rendu
-- Le script sql avec les résultat des test est dans "fullProject.sql"
+- Le script sql avec les résultats des tests est dans "fullProject.sql"
 - le code du bonus Java EE est dans "java-ee-web-bonus"
-- les photo avec les explications du aplicatif web sont dans "img-web-bonus" a suivre dans l'orde des numero
-- uml etais realise avec booml le projet est "uml-ludotheque"
-- la photo de l'uml est a la racine "uml.png"
+- les photos avec les explications de l'applicatif web sont dans "img-web-bonus", à suivre dans l'ordre des numéros
+- l'uml a été réalisé avec Bouml, le projet est dans "uml-ludotheque"
+- la photo de l'uml est à la racine : "uml.png"
 
-## Repartition des taches
+## Répartition des taches
 - Camelia Zarzitski Benhmida 
-
+  - Création des types et tables Abonne_t, reduction_t, reduction_o, abonne_o, avec les contraintes sur les tables
+  - Sélection d'objets à travers les références
+  - insertion d'objets dans les différentes tables et nested tables
+  - suppression et update des objets, objets dans nested tables et références (listes de films, de livres et d'articles)
+  
 - Alex Zarzitski
-
+   - Création des types et tables jeu video, jeu societe et livre 
+   - gestion de l'héritage (jeuvideo et jeusociete héritant de article)
+   - programmation de l'interface web avec Java JEE connecté à Oracle local
+   - gestion du clob en collaboration avec Camelia
+   
 - Maël Vaillant--Beuchot
-
+   
 
 ## UML
 - Vert - Camelia Zarzitski Benhmida
